@@ -3,7 +3,7 @@
 import { useState, useEffect, useCallback } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 
-const TOTAL_SLIDES = 20
+const TOTAL_SLIDES = 21
 
 // Slide 1: Title
 function TitleSlide() {
@@ -759,7 +759,96 @@ function TroubleshootingSlide() {
   )
 }
 
-// Slide 19: Hands-On Setup
+// Slide 19: Quick Tips
+function QuickTipsSlide() {
+  const tips = [
+    {
+      emoji: '📂',
+      question: 'How do I find my skills folder?',
+      answer: 'Run this in Terminal:',
+      code: 'open ~/.cursor/skills',
+      note: 'Opens the folder in Finder where all your local skills live.',
+    },
+    {
+      emoji: '🔗',
+      question: 'How do I create a shareable link?',
+      answer: 'Ask Cursor to deploy to GitHub Pages:',
+      code: '"Save this presentation to GitHub Pages"',
+      note: 'Creates a public URL you can share with anyone.',
+    },
+    {
+      emoji: '💬',
+      question: 'How do I find a previous chat?',
+      answer: 'Two options:',
+      code: null,
+      note: '1. Always open the same project folder — chats stay with the folder.\n2. Recent chats appear in the sidebar under "History".',
+    },
+    {
+      emoji: '📎',
+      question: 'How do I give context to the agent?',
+      answer: 'Use @ to reference files or folders:',
+      code: '@context/product-brief.md',
+      note: 'The agent will read the file before answering.',
+    },
+    {
+      emoji: '🤖',
+      question: 'Agent mode vs Ask mode?',
+      answer: 'Use the toggle in chat or press ⌘+.',
+      code: null,
+      note: 'Agent = can edit files. Ask = read-only, just answers questions.',
+    },
+  ]
+
+  return (
+    <div className="h-full flex flex-col px-16 py-12">
+      <motion.h2 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="text-4xl font-bold text-intuit-navy mb-8">
+        Quick Tips
+      </motion.h2>
+      <div className="grid grid-cols-2 gap-5 flex-1">
+        {tips.slice(0, 4).map((tip, i) => (
+          <motion.div
+            key={i}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: i * 0.1 }}
+            className="glass-card rounded-2xl p-5"
+          >
+            <div className="flex items-start gap-4">
+              <div className="text-3xl">{tip.emoji}</div>
+              <div className="flex-1">
+                <h4 className="text-lg font-semibold text-intuit-navy mb-2">{tip.question}</h4>
+                <p className="text-sm text-intuit-text-secondary mb-2">{tip.answer}</p>
+                {tip.code && (
+                  <div className="code-block rounded-lg px-3 py-2 text-sm font-mono mb-2">
+                    <span className="text-green-400">{tip.code}</span>
+                  </div>
+                )}
+                <p className="text-xs text-intuit-text-tertiary whitespace-pre-line">{tip.note}</p>
+              </div>
+            </div>
+          </motion.div>
+        ))}
+      </div>
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.4 }}
+        className="glass-card rounded-2xl p-5 mt-4"
+      >
+        <div className="flex items-start gap-4">
+          <div className="text-3xl">{tips[4].emoji}</div>
+          <div className="flex-1">
+            <h4 className="text-lg font-semibold text-intuit-navy mb-2">{tips[4].question}</h4>
+            <p className="text-sm text-intuit-text-secondary mb-2">{tips[4].answer}</p>
+            <p className="text-xs text-intuit-text-tertiary">{tips[4].note}</p>
+          </div>
+        </div>
+      </motion.div>
+    </div>
+  )
+}
+
+// Slide 20: Hands-On Setup
 function ThankYouSlide() {
   return (
     <div className="h-full flex flex-col justify-center items-center px-16 bg-gradient-to-br from-intuit-positive to-intuit-blue text-white">
@@ -830,7 +919,8 @@ export default function Deck() {
     <SynthesizingSlide key="16" />,
     <TroubleshootingSlide key="17" />,
     <ComparisonSlide key="18" />,
-    <ThankYouSlide key="19" />,
+    <QuickTipsSlide key="19" />,
+    <ThankYouSlide key="20" />,
   ]
 
   return (
