@@ -3,7 +3,7 @@
 import { useState, useEffect, useCallback } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 
-const TOTAL_SLIDES = 21
+const TOTAL_SLIDES = 20
 
 // Slide 1: Title
 function TitleSlide() {
@@ -18,38 +18,21 @@ function TitleSlide() {
         <h1 className="text-6xl font-extrabold mb-6 leading-tight">
           Getting Started with Cursor<br />for UX Researchers
         </h1>
-        <p className="text-xl opacity-70 mt-8">March 2026</p>
+        <p className="text-xl opacity-70 mt-8">April 2026</p>
+        <p className="text-lg opacity-60 mt-3">@Ainatte Inbal (Slack me for questions)</p>
       </motion.div>
     </div>
   )
 }
 
-// Slide 2: Nice to meet you
-function IntroSlide() {
-  return (
-    <div className="h-full flex flex-col justify-center items-center px-16">
-      <motion.div
-        initial={{ opacity: 0, scale: 0.8 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.6 }}
-        className="text-center"
-      >
-        <div className="text-[8rem] mb-8">👩🏻‍🦰👋</div>
-        <h1 className="text-5xl font-bold text-intuit-navy">Nice to meet you!</h1>
-        <p className="text-2xl text-intuit-text-secondary mt-6">@ainatte inbal</p>
-      </motion.div>
-    </div>
-  )
-}
-
-// Slide 3: Agenda
+// Slide 2: Agenda
 function AgendaSlide() {
   const items = [
     { num: 1, title: 'Basic Concepts', desc: 'Agent, Project, MCP, Skills, Rules, GitHub', color: 'from-intuit-blue to-intuit-navy' },
     { num: 2, title: 'Marvin MCP Setup', desc: 'Connect your customer research data', color: 'from-intuit-positive to-intuit-navy' },
     { num: 3, title: 'Installing Skills', desc: 'Local skills and skills from the repo', color: 'from-intuit-orange to-intuit-navy' },
     { num: 4, title: 'Research Skills', desc: 'Skill deep-dive for UX research', color: 'from-intuit-negative to-intuit-navy' },
-    { num: 5, title: 'Cursor vs Claude Desktop', desc: 'Which tool for research workflows?', color: 'from-intuit-purple to-intuit-navy' },
+    { num: 5, title: 'Cursor/Claude Desktop/Claude CLI', desc: 'Which tool for research workflows?', color: 'from-intuit-purple to-intuit-navy' },
     { num: 6, title: 'Hands-On Setup', desc: 'Setup your MCP and Skills', color: 'from-intuit-navy to-intuit-blue' },
   ]
 
@@ -60,7 +43,7 @@ function AgendaSlide() {
         animate={{ opacity: 1, y: 0 }}
         className="text-4xl font-bold text-intuit-navy mb-10"
       >
-        What We'll Cover Today
+        Covered in this deck
       </motion.h2>
       <div className="grid grid-cols-3 gap-6 flex-1">
         {items.map((item, i) => (
@@ -248,9 +231,6 @@ function MarvinToolsSlide() {
               <div key={i} className="font-mono text-intuit-navy text-sm py-2 border-b border-intuit-border-tertiary last:border-0">{p}</div>
             ))}
           </div>
-          <div className="mt-4 p-4 bg-intuit-blue/10 border-l-4 border-intuit-blue rounded-r-xl">
-            <p className="text-intuit-text-primary text-sm"><strong>Note:</strong> You need <strong>Contributor</strong> or <strong>Admin</strong> role in Marvin.</p>
-          </div>
         </motion.div>
       </div>
       <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.5 }} className="mt-6">
@@ -273,7 +253,7 @@ function MarvinSetupSlide() {
       <div className="grid grid-cols-2 gap-10 flex-1">
         <div className="space-y-6">
           {[
-            { num: 1, title: 'Add Marvin to MCP Config', desc: '⌘+Shift+P → "Open MCP Settings"' },
+            { num: 1, title: 'Add Marvin to MCP Config', desc: '⌘+Shift+P → "Open MCP Settings" → copy code to config file' },
             { num: 2, title: 'Restart Cursor', desc: 'Quit and reopen so it picks up the config' },
             { num: 3, title: 'Connect & Authenticate', desc: 'Settings → MCP → Find Marvin → Connect' },
           ].map((step, i) => (
@@ -320,55 +300,74 @@ function ComparisonSlide() {
   return (
     <div className="h-full flex flex-col px-16 py-12">
       <motion.h2 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="text-4xl font-bold text-intuit-navy mb-2">
-        Cursor vs Claude Desktop for Research
+        Cursor vs Claude Desktop vs Claude Code
       </motion.h2>
-      <p className="text-intuit-text-secondary mb-8">Both can connect to Marvin via MCP. The difference is the environment around the conversation.</p>
-      <div className="grid grid-cols-2 gap-8 flex-1">
-        <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.2 }} className="glass-card rounded-2xl p-6">
-          <h4 className="text-xl font-bold text-intuit-navy mb-4 flex items-center gap-3">
-            <span className="w-10 h-10 rounded-xl bg-intuit-purple text-white flex items-center justify-center font-bold">C</span>
+      <p className="text-intuit-text-secondary mb-6">All three connect to Marvin via MCP. The difference is the environment around the conversation.</p>
+      <div className="grid grid-cols-3 gap-5 flex-1">
+        <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.2 }} className="glass-card rounded-2xl p-5">
+          <h4 className="text-lg font-bold text-intuit-navy mb-3 flex items-center gap-2">
+            <span className="w-9 h-9 rounded-xl bg-intuit-purple text-white flex items-center justify-center font-bold text-sm">C</span>
             Claude Desktop
           </h4>
-          <ul className="space-y-3 text-intuit-text-primary">
+          <ul className="space-y-2 text-intuit-text-primary text-sm">
             {[
               'Clean conversational interface',
-              'Feels like talking to a research assistant',
+              'Feels like a research assistant',
               'No file trees or code clutter',
               'Simpler setup for non-technical users',
-              'Slack MCP currently authorized only for Claude',
             ].map((item, i) => (
               <li key={i} className="flex items-start gap-2">
-                <span className="w-2 h-2 rounded-full bg-gray-400 mt-2 flex-shrink-0" />
+                <span className="w-1.5 h-1.5 rounded-full bg-gray-400 mt-1.5 flex-shrink-0" />
                 {item}
               </li>
             ))}
-            <li className="font-semibold text-intuit-purple pt-2">Best for: pure research queries</li>
+            <li className="font-semibold text-intuit-purple pt-2 text-sm">Best for: pure research queries</li>
           </ul>
         </motion.div>
-        <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.3 }} className="glass-card rounded-2xl p-6 border-2 border-intuit-positive relative">
-          <span className="absolute -top-3 right-5 bg-intuit-positive text-white text-xs font-semibold px-3 py-1 rounded-full">RECOMMENDED</span>
-          <h4 className="text-xl font-bold text-intuit-navy mb-4 flex items-center gap-3">
-            <span className="w-10 h-10 rounded-xl bg-intuit-blue text-white flex items-center justify-center font-bold">↯</span>
+        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }} className="glass-card rounded-2xl p-5 border-2 border-intuit-positive relative">
+          <span className="absolute -top-3 right-4 bg-intuit-positive text-white text-xs font-semibold px-2 py-1 rounded-full">RECOMMENDED</span>
+          <h4 className="text-lg font-bold text-intuit-navy mb-3 flex items-center gap-2">
+            <span className="w-9 h-9 rounded-xl bg-intuit-blue text-white flex items-center justify-center font-bold text-sm">↯</span>
             Cursor
           </h4>
-          <ul className="space-y-3 text-intuit-text-primary">
+          <ul className="space-y-2 text-intuit-text-primary text-sm">
             {[
-              'Research + code in the same session',
-              'Create deliverables (docs, specs, reports)',
-              'Skills automate your workflows',
-              'Better MCP error visibility',
+              'Research + code in same session',
+              'Create docs, specs, reports',
+              'Skills automate workflows',
+              'Visual UI with file explorer',
             ].map((item, i) => (
               <li key={i} className="flex items-start gap-2">
-                <span className="w-2 h-2 rounded-full bg-intuit-positive mt-2 flex-shrink-0" />
+                <span className="w-1.5 h-1.5 rounded-full bg-intuit-positive mt-1.5 flex-shrink-0" />
                 {item}
               </li>
             ))}
-            <li className="font-semibold text-intuit-positive pt-2">Best for: research that produces artifacts</li>
+            <li className="font-semibold text-intuit-positive pt-2 text-sm">Best for: research + artifacts</li>
+          </ul>
+        </motion.div>
+        <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.4 }} className="glass-card rounded-2xl p-5">
+          <h4 className="text-lg font-bold text-intuit-navy mb-3 flex items-center gap-2">
+            <span className="w-9 h-9 rounded-xl bg-intuit-orange text-white flex items-center justify-center font-bold text-sm">&gt;_</span>
+            Claude Code
+          </h4>
+          <ul className="space-y-2 text-intuit-text-primary text-sm">
+            {[
+              'Terminal-native (no GUI needed)',
+              'Git-aware with shell integration',
+              'Works in any directory',
+              'Great for heavy refactoring',
+            ].map((item, i) => (
+              <li key={i} className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 rounded-full bg-intuit-orange mt-1.5 flex-shrink-0" />
+                {item}
+              </li>
+            ))}
+            <li className="font-semibold text-intuit-orange pt-2 text-sm">Best for: terminal power users</li>
           </ul>
         </motion.div>
       </div>
-      <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.5 }} className="mt-6 p-4 bg-gradient-to-r from-intuit-positive/10 to-intuit-blue/10 border-l-4 border-intuit-positive rounded-r-xl">
-        <p><strong>Use Cursor when:</strong> Your research overlaps with code, prototyping, or deliverables like design specs, component docs, or structured content.</p>
+      <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.5 }} className="mt-4 p-3 bg-gradient-to-r from-intuit-positive/10 to-intuit-blue/10 border-l-4 border-intuit-positive rounded-r-xl">
+        <p className="text-sm"><strong>For UX Researchers:</strong> Cursor is recommended — visual interface, skills support, and great for creating deliverables from research.</p>
       </motion.div>
     </div>
   )
@@ -595,10 +594,27 @@ function ResearchSkillsTableSlide() {
 
   return (
     <div className="h-full flex flex-col px-16 py-12">
-      <motion.h2 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="text-4xl font-bold text-intuit-navy mb-8">
-        Research Skills for UX
-      </motion.h2>
-      <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }} className="flex-1">
+      <div className="mb-6">
+        <motion.h2 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="text-4xl font-bold text-intuit-navy mb-2">
+          Research Skills for UX
+        </motion.h2>
+        <motion.p
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.1 }}
+          className="text-intuit-text-secondary"
+        >
+          <a
+            href="https://github.intuit.com/pages/snandwani2/innersource-skills/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-intuit-blue font-medium hover:underline"
+          >
+            Skills Repo
+          </a>
+        </motion.p>
+      </div>
+      <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }} className="flex-1 min-h-0">
         <div className="bg-white rounded-xl border border-intuit-border-primary overflow-hidden">
           <div className="grid grid-cols-4 bg-intuit-navy text-white font-semibold text-sm">
             <div className="p-4">Skill</div>
@@ -901,8 +917,7 @@ export default function Deck() {
 
   const slides = [
     <TitleSlide key="1" />,
-    <IntroSlide key="2" />,
-    <AgendaSlide key="3" />,
+    <AgendaSlide key="2" />,
     <BasicConceptsSlide key="3" />,
     <GitHubSlide key="4" />,
     <MarvinSectionSlide key="5" />,
