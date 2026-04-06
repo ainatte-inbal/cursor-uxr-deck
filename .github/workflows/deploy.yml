@@ -33,6 +33,9 @@ jobs:
 
       - name: Build
         run: npm run build
+        env:
+          # Public GitHub.com → /cursor-uxr-deck. Intuit (ainbal/…) → unset uses next.config default /pages/ainbal/cursor-uxr-deck
+          PAGES_BASE_PATH: ${{ github.repository == 'ainatte-inbal/cursor-uxr-deck' && '/cursor-uxr-deck' || '' }}
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
